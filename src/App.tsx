@@ -21,15 +21,16 @@ function App() {
   }
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    client.models.Todo.create({ content: window.prompt("Todo content"), user: user?.signInDetails?.loginId });
   }
 
   return (
     
     <Authenticator>
-      {({ signOut }) => (
+      {({ signOut, user }) => (
     <main>
-      <h1>My todos</h1>
+          <h1>{user?.signInDetails?.loginId}'s todos</h1>
+      <h1>Not my todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
