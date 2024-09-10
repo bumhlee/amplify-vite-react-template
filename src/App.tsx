@@ -20,7 +20,7 @@ function App() {
     client.models.Todo.delete({ id })
   }
 
-  function createTodo() {
+  function createTodo(user: any) {
     client.models.Todo.create({ content: window.prompt("Todo content"), user: user?.signInDetails?.loginId });
   }
 
@@ -31,7 +31,7 @@ function App() {
     <main>
           <h1>{user?.signInDetails?.loginId}'s todos</h1>
       <h1>Not my todos</h1>
-      <button onClick={createTodo}>+ new</button>
+      <button onClick={() => createTodo(user)}>+ new</button>
       <ul>
         {todos.map((todo) => (
           <li 
